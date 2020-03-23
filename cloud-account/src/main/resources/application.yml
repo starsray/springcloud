@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: cloud-account
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    druid:
+      initial-size: 3
+      min-idle: 3
+      max-active: 10
+      max-wait: 60000
+    stat-view-servlet:
+      login-username: admin
+      login-password: admin
+    filter:
+      stat:
+        log-slow-sql: true
+        slow-sql-millis: 2000
+
+server:
+  port: 8001
+
+eureka:
+  instance:
+    instance-id: account1
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+  client:
+    service-url:
+      defaultZone: http://eureka-7901:7901/eureka/,http://eureka-7902:7902/eureka/,http://eureka-7903:7903/eureka/

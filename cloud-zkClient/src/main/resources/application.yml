@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: zk-client
+  cloud:
+    zookeeper:
+      connect-string: 47.95.192.77:2181
+      discovery:
+        enabled: true
+
+server:
+  port: 8080

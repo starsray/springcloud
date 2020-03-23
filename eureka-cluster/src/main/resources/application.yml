@@ -1,0 +1,76 @@
+---
+spring:
+  profiles: eureka-7901
+  application:
+    name: eureka-cluster1
+server:
+  port: 7901
+eureka:
+  instance:
+    #eureka server通讯地址
+    hostname: eureka-7901
+    #显示在注册中心的微服务名称
+    instance-id: eureka1
+    #是否显示IP地址
+    prefer-ip-address: true
+    #client发送心跳间隔时间 默认30s
+    lease-renewal-interval-in-seconds: 30
+    #表示eureka server至上一次收到client的心跳之后，等待下一次心跳的超时时间，在这个时间内若没收到次心跳，则将移除该instance
+    lease-expiration-duration-in-seconds: 90
+  client:
+    #是否提取服务端注册信息
+    fetch-registry: true
+    #是否注册自己
+    register-with-eureka: true
+    #eureka server自身作为client时将要注册到的服务端地址
+    service-url:
+      defaultZone: http://eureka-7902:7902/eureka/,http://eureka-7903:7903/eureka/
+  server:
+    #自我保护机制
+    enable-self-preservation: true
+    #eureka server清理无效节点的时间间隔，默认60000毫秒
+    eviction-interval-timer-in-ms: 60000
+---
+spring:
+  profiles: eureka-7902
+  application:
+    name: eureka-cluster2
+server:
+  port: 7902
+eureka:
+  instance:
+    hostname: eureka-7902
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+    instance-id: eureka2
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-7901:7901/eureka/,http://eureka-7903:7903/eureka/
+  server:
+    enable-self-preservation: true
+    eviction-interval-timer-in-ms: 6000
+---
+spring:
+  profiles: eureka-7903
+  application:
+    name: eureka-cluster3
+server:
+  port: 7903
+eureka:
+  instance:
+    hostname: eureka-7903
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+    instance-id: eureka3
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-7901:7901/eureka/,http://eureka-7902:7902/eureka/
+  server:
+    enable-self-preservation: true
+    eviction-interval-timer-in-ms: 6000
