@@ -1,21 +1,23 @@
 spring:
   application:
     name: consul-client
-  profiles: dev
+  profiles:
+    active: dev
   cloud:
     consul:
       discovery:
         enabled: true
         health-check-path: /actuator/health
         health-check-interval: 10s
+        health-check-critical-timeout: 15s
         instance-id: consul-client
         hostname: 127.0.0.1
         port: 8500
+        service-name: consul-client
       config:
         enabled: true
-        data-key: data
         format: yaml
-        default-context: consul-client
+        data-key: user
 
 server:
   port: 8080
