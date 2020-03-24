@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: consul-client
+  profiles: dev
+  cloud:
+    consul:
+      discovery:
+        enabled: true
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+        instance-id: consul-client
+        hostname: 127.0.0.1
+        port: 8500
+      config:
+        enabled: true
+        data-key: data
+        format: yaml
+        default-context: consul-client
+
+server:
+  port: 8080
