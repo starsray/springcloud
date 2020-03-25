@@ -1,28 +1,31 @@
-package com.cloud.account.entity;
+package com.cloud.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import lombok.Data;
-
 
 /**
- * account
+ * tb_account
  * @author 
  */
-@Table(name="account")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Account implements Serializable {
-    @Id
-    private Integer id;
 
-    private String username;
+    private Integer tid;
+
+    private String userName;
 
     private String password;
 
     private String address;
 
     private Integer age;
+
+    private String userid;
 
     private static final long serialVersionUID = 1L;
 }
