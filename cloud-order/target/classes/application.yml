@@ -1,8 +1,8 @@
 ---
 spring:
   application:
-    name: cloud-account
-  profiles: account9001
+    name: cloud-order
+  profiles: order9003
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://localhost:3306/springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
@@ -22,30 +22,27 @@ spring:
         log-slow-sql: true
         slow-sql-millis: 2000
 server:
-  port: 9001
+  port: 9003
 eureka:
   instance:
-    instance-id: account1
+    instance-id: order1
     lease-renewal-interval-in-seconds: 30
     lease-expiration-duration-in-seconds: 90
     prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:7900/eureka
-      #defaultZone: http://eureka-7901:7901/eureka/,http://eureka-7902:7902/eureka/,http://eureka-7903:7903/eureka/
+#      defaultZone: http://eureka-7901:7901/eureka/,http://eureka-7902:7902/eureka/,http://eureka-7903:7903/eureka/
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.cloud.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-ribbon:
- ReadTimeout: 60000
- ConnectTimeout: 60000
 ---
 spring:
   application:
-    name: cloud-account
-  profiles: account9002
+    name: cloud-order
+  profiles: order9004
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://localhost:3306/springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
@@ -65,10 +62,10 @@ spring:
         log-slow-sql: true
         slow-sql-millis: 2000
 server:
-  port: 9002
+  port: 9004
 eureka:
   instance:
-    instance-id: account2
+    instance-id: order2
     lease-renewal-interval-in-seconds: 30
     lease-expiration-duration-in-seconds: 90
     prefer-ip-address: true
@@ -81,6 +78,3 @@ mybatis:
   type-aliases-package: com.cloud.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-ribbon:
-  ReadTimeout: 60000
-  ConnectTimeout: 60000
