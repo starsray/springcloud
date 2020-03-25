@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    consul:
+      config:
+        enabled: true
+        prefix: config
+        default-context: consul-client
+        profile-separator: ','
+        data-key: data
+        format: yaml
+      host: 47.95.192.77
+      port: 8500

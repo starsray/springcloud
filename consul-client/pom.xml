@@ -16,6 +16,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <!--actuator-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -27,6 +28,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-consul-discovery</artifactId>
         </dependency>
+
         <!-- consul config-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
