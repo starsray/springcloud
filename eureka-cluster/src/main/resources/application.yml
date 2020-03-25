@@ -1,8 +1,9 @@
+#eureka cluster
 ---
 spring:
   profiles: eureka-7901
   application:
-    name: eureka-cluster1
+    name: eureka-cluster
 server:
   port: 7901
 eureka:
@@ -34,7 +35,7 @@ eureka:
 spring:
   profiles: eureka-7902
   application:
-    name: eureka-cluster2
+    name: eureka-cluster
 server:
   port: 7902
 eureka:
@@ -56,7 +57,7 @@ eureka:
 spring:
   profiles: eureka-7903
   application:
-    name: eureka-cluster3
+    name: eureka-cluster
 server:
   port: 7903
 eureka:
@@ -73,4 +74,28 @@ eureka:
       defaultZone: http://eureka-7901:7901/eureka/,http://eureka-7902:7902/eureka/
   server:
     enable-self-preservation: true
+    eviction-interval-timer-in-ms: 6000
+
+#eureka stand alone
+---
+spring:
+  profiles: eureka
+  application:
+    name: eureka
+server:
+  port: 7900
+eureka:
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+    instance-id: eureka
+    prefer-ip-address: true
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+  server:
+    enable-self-preservation: false
     eviction-interval-timer-in-ms: 6000

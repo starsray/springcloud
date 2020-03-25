@@ -1,4 +1,4 @@
-package com.cloud.account;
+package com.cloud.payment;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -8,19 +8,13 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 /**
  * @author Vicente
  * @version 1.0
- * @date 2020/3/23 13:35
+ * @date 2020/3/25 11:48
  */
-
-/**
- * EnableDiscoveryClient 可使用cloud适配的所有服务管理组件
- * EnableEurekaClient 只能在Eureka的服务管理组件中使用
- */
-
 @SpringBootApplication
 @EnableEurekaClient
-@MapperScan("com.cloud.account.mapper")
-public class AccountApplication {
+@MapperScan("com.cloud.payment.mapper")
+public class PaymentApplication {
     public static void main(String[] args) {
-        SpringApplication.run(AccountApplication.class,args);
+        SpringApplication.run(PaymentApplication.class,args);
     }
 }

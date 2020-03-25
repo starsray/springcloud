@@ -1,13 +1,12 @@
 package com.cloud.order.controller;
 
-import com.cloud.order.dao.OrderRepository;
-import com.cloud.order.entity.Order;
+import com.cloud.entity.Order;
+import com.cloud.order.mapper.OrderMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @author Vicente
@@ -16,12 +15,13 @@ import java.util.List;
  */
 @RestController
 public class OrderController {
-    @Resource
-    private OrderRepository orderRepository;
 
-    @GetMapping("getOrder")
-    public List<Order> getOrderInfo() {
-        List<Order> all = orderRepository.findAll();
-        return all;
+    @Resource
+    private OrderMapper orderMapper;
+
+    @GetMapping("order/{id}")
+    public Order getAccount(@PathVariable("id") Integer id){
+        return orderMapper.selectByPrimaryKey(1);
     }
+
 }

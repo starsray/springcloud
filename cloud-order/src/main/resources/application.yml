@@ -1,6 +1,8 @@
+---
 spring:
   application:
     name: cloud-order
+  profiles: order9003
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://localhost:3306/springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
@@ -19,8 +21,60 @@ spring:
       stat:
         log-slow-sql: true
         slow-sql-millis: 2000
-
-  jpa:
-    database: MySQL
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    show-sql: true
+server:
+  port: 9003
+eureka:
+  instance:
+    instance-id: order1
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:7900/eureka
+#      defaultZone: http://eureka-7901:7901/eureka/,http://eureka-7902:7902/eureka/,http://eureka-7903:7903/eureka/
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cloud.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+---
+spring:
+  application:
+    name: cloud-order
+  profiles: order9004
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    druid:
+      initial-size: 3
+      min-idle: 3
+      max-active: 10
+      max-wait: 60000
+    stat-view-servlet:
+      login-username: admin
+      login-password: admin
+    filter:
+      stat:
+        log-slow-sql: true
+        slow-sql-millis: 2000
+server:
+  port: 9004
+eureka:
+  instance:
+    instance-id: order2
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:7900/eureka
+      #defaultZone: http://eureka-7901:7901/eureka/,http://eureka-7902:7902/eureka/,http://eureka-7903:7903/eureka/
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cloud.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

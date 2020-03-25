@@ -13,9 +13,9 @@
         <module>cloud-account</module>
         <module>cloud-zkClient</module>
         <module>consul-client</module>
-        <module>nacos-cluster</module>
         <module>cloud-order</module>
         <module>cloud-payment</module>
+        <module>cloud-common</module>
     </modules>
 
 
