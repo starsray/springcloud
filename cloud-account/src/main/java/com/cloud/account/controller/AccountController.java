@@ -2,11 +2,12 @@ package com.cloud.account.controller;
 
 
 import com.cloud.account.service.AccountFeignService;
+import com.cloud.entity.CommonResult;
 import com.cloud.entity.Payment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -45,10 +46,14 @@ public class AccountController {
     @Value("${server.port}")
     private String port;
 
-    @GetMapping("consumer/account/payment/{id}")
-    public Payment getPayByFeign(@PathVariable("id") Integer id){
+    @RequestMapping("consumer/account/pay/{id}")
+    public CommonResult<Payment> getPayByFeign(@PathVariable("id") Integer id){
         log.info("Feign : "+port);
-        return accountFeignService.selectByPrimaryKey(id);
+        Payment payment = accountFeignService.selectByPrimaryKey(id);
+        if(payment != null){
+            return new CommonResult<Payment>(200,"成功",payment);
+        }else{
+            return new CommonResult<Payment>(500,"服务器暂时不可用，请稍后再试...");
+        }
     }
-
 }

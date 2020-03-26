@@ -2,8 +2,8 @@ package com.cloud.payment.service;
 
 import com.cloud.entity.Payment;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author Vicente
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 @Service
 public interface PaymentService {
-    @GetMapping("provider/pay/{id}")
+    @RequestMapping("provider/pay/{id}")
     public Payment selectByPrimaryKey(@PathVariable("id") Integer id);
+
 }

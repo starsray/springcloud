@@ -3,8 +3,8 @@ package com.cloud.account.service;
 import com.cloud.entity.Payment;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author Vicente
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient("CLOUD-PAYMENT")
 public interface AccountFeignService {
 
-    @GetMapping("provider/pay/{id}")
+    @RequestMapping("provider/pay/{id}")
     public Payment selectByPrimaryKey(@PathVariable("id") Integer id);
+
 }

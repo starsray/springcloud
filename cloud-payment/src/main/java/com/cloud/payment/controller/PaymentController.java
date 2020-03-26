@@ -27,11 +27,12 @@ public class PaymentController {
 
     @GetMapping("provider/pay/{id}")
     public Payment getPayment(@PathVariable("id")Integer id){
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//模拟延时请求
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         log.info("Payment Feign Port ： "+port);
         return paymentService.selectByPrimaryKey(id);

@@ -39,8 +39,8 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 ribbon:
- ReadTimeout: 60000
- ConnectTimeout: 60000
+ ReadTimeout: 50000
+ ConnectTimeout: 50000
 ---
 spring:
   application:
@@ -81,6 +81,7 @@ mybatis:
   type-aliases-package: com.cloud.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#ribbon延时请求
 ribbon:
-  ReadTimeout: 60000
-  ConnectTimeout: 60000
+  ReadTimeout: 50000
+  ConnectTimeout: 50000
